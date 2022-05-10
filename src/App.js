@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Home from "./components/home/Home";
 import nave1 from "./components/imagens/nave1.png";
@@ -7,6 +7,15 @@ import nave3 from "./components/imagens/nave3.png";
 import nave4 from "./components/imagens/nave4.png";
 import nave5 from "./components/imagens/nave5.png";
 import nave6 from "./components/imagens/nave6.png";
+
+
+const Buscador = styled.input`
+
+
+padding: 5px;
+
+`
+
 
 export const Cabecalho = styled.header`
   width: auto;
@@ -62,24 +71,41 @@ export const Corpo = styled.section`
   }
 `;
 
+const produtos = [
+  {id:1,nome:'Nave Revell U.S.S Voyager',valor:'R$: 3.000,00',img:nave1},
+  {id:2,nome:'Nave Tie Figther',valor:'R$: 2.500,00',img:nave2},
+  {id:3,nome:'Nave Millennium Falcon',valor:'R$: 6.000,00',img:nave3},
+  {id:4,nome:'Nave Marciana',valor:'R$: 8.000,00',img:nave4},
+  {id:5,nome:'Onibus Espacial Tesla',valor:'R$: 1.500,00',img:nave5},
+  {id:6,nome:'Nave 6',valor:'R$: 2.000,00',img:nave6},
+];
+
 function App() {
+
+const [busca,setBusca]= useState('');
+
+const prod = produtos.filter((item)=> item.nome.toLowerCase().includes(busca.toLowerCase()));
+
+
+
   return (
     <div>
       <Cabecalho>
-        <a src="app.js">HOME</a>
-        <a src="">PRODUTOS</a>
-        <a src="carrinho.js">CARRINHO</a>
+        <a href="app.js">HOME</a>
+        <a href="">PRODUTOS</a>
+        <a href="carrinho.js">CARRINHO</a>
       </Cabecalho>
       <Titulo>SPACE JAMSHIPS</Titulo>
+      <Buscador type="text" value={busca} onChange={(ev)=>setBusca(ev.target.value)} placeholder="Busca..."/><br/>
+      
       <Corpo>
-        <Home imagem={nave1} nome="Nave Revell U.S.S Voyager" valor="R$3.000,00" />
-        <Home imagem={nave2} nome="Nave Tie Figther" valor="R$2.500,00" />
-        <Home imagem={nave3} nome="Nave Millennium Falcon" valor="R$6.000,00" />
-        <Home imagem={nave4} nome="Nave Marciana" valor="R$8.000,00" />
-        <Home imagem={nave5} nome="Onibus Espacial Tesla" valor="R$1.500,00" />
-        <Home imagem={nave6} nome="Nave 6" valor="R$2.000,00" />
+
+      {prod.map((item)=>{
+        return <Home key={item.id} imagem={item.img} nome={item.nome} valor={item.valor} />
+      })}
+
       </Corpo>
-      <Rodape>#LOJASPACEJAM </Rodape>
+      <Rodape>&copy; LOJASPACEJAM </Rodape>
     </div>
   );
 }
