@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Filtro from "./components/filtro/Filtro.jsx";
 import Home from "./components/home/Home";
 import nave1 from "./components/imagens/nave1.png";
 import nave2 from "./components/imagens/nave2.png";
@@ -80,34 +81,62 @@ const produtos = [
   {id:6,nome:'Nave 6',valor:'R$: 2.000,00',img:nave6},
 ];
 
-function App() {
+export class App extends React.Component {
 
-const [busca,setBusca]= useState('');
+  state = {
+    minPreco: "",
+    maxPreco: "",
+  }  
+    filtroMinPreco = (event) => {
+      this.setState({
+        minPreco: event.target.value
+      })
+    }
 
-const prod = produtos.filter((item)=> item.nome.toLowerCase().includes(busca.toLowerCase()));
+    filtroMaxPreco = (event) => {
+      this.setState({
+        maxPreco: event.target.value
+      })
+    }
 
-
-
-  return (
-    <div>
-      <Cabecalho>
-        <a href="app.js">HOME</a>
-        <a href="">PRODUTOS</a>
-        <a href="carrinho.js">CARRINHO</a>
-      </Cabecalho>
-      <Titulo>SPACE JAMSHIPS</Titulo>
-      <Buscador type="text" value={busca} onChange={(ev)=>setBusca(ev.target.value)} placeholder="Busca..."/><br/>
+    render(){
       
-      <Corpo>
+    const [busca,setBusca]= useState('');
 
-      {prod.map((item)=>{
-        return <Home key={item.id} imagem={item.img} nome={item.nome} valor={item.valor} />
-      })}
+    const prod = produtos.filter((item)=> item.nome.toLowerCase().includes(busca.toLowerCase()));
 
-      </Corpo>
-      <Rodape>&copy; LOJASPACEJAM </Rodape>
-    </div>
-  );
+
+
+      return (
+        
+        <div>
+          <Cabecalho>
+            <a href="app.js">HOME</a>
+            <a href="">PRODUTOS</a>
+            <a href="carrinho.js">CARRINHO</a>
+          </Cabecalho>
+        
+          <Titulo>SPACE JAMSHIPS</Titulo>
+        
+          <Buscador type="text" value={busca} onChange={(ev)=>setBusca(ev.target.value)} placeholder="Busca..."/><br/>
+
+          <Filtro
+            minPreco={this.state.minPreco}
+            filtroMinPreco={this.filtroMinPreco}
+            maxPreco={this.state.filtroMaxPreco}
+            filtroMaxPreco={this.filtroMaxPreco}
+          />
+      
+          <Corpo>
+            {prod.map((item)=>{
+              return <Home key={item.id} imagem={item.img} nome={item.nome}   valor={item.valor} />
+            })}
+          </Corpo>
+        
+          <Rodape>&copy; LOJASPACEJAM </Rodape>
+        </div>
+      
+      )};
 }
 
 export default App;
