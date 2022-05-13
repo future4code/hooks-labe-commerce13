@@ -11,14 +11,7 @@ import nave6 from "./components/imagens/nave6.png";
 
 
 const Buscador = styled.input`
-<<<<<<< HEAD
 padding: 5px;
-=======
-
-
-padding: 5px;
-
->>>>>>> 30ed453bfc003400a719fb001f7678078dc67161
 `
 
 
@@ -34,10 +27,7 @@ export const Cabecalho = styled.header`
   font-size: 10px;
   font-weight: bolder;
 `;
-<<<<<<< HEAD
 
-=======
->>>>>>> 30ed453bfc003400a719fb001f7678078dc67161
 export const Rodape = styled.footer`
   width: auto;
   background-color: #001E5F;
@@ -89,16 +79,12 @@ const produtos = [
   {id:6,nome:'Nave 6',valor:'R$: 2.000,00',img:nave6},
 ];
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 30ed453bfc003400a719fb001f7678078dc67161
 export class App extends React.Component {
 
   state = {
     minPreco: "",
     maxPreco: "",
-<<<<<<< HEAD
   }
 
   updateMinPreco = (ev) => {
@@ -116,45 +102,16 @@ export class App extends React.Component {
     render(){
     
          return (
-=======
-  }  
-    filtroMinPreco = (event) => {
-      this.setState({
-        minPreco: event.target.value
-      })
-    }
-
-    filtroMaxPreco = (event) => {
-      this.setState({
-        maxPreco: event.target.value
-      })
-    }
-
-    render(){
-      
-    const [busca,setBusca]= useState('');
-
-    const prod = produtos.filter((item)=> item.nome.toLowerCase().includes(busca.toLowerCase()));
-
-
-
-      return (
->>>>>>> 30ed453bfc003400a719fb001f7678078dc67161
         
         <div>
           <Cabecalho>
             <a href="app.js">HOME</a>
-<<<<<<< HEAD
             <a href=" ">PRODUTOS</a>
-=======
-            <a href="">PRODUTOS</a>
->>>>>>> 30ed453bfc003400a719fb001f7678078dc67161
             <a href="carrinho.js">CARRINHO</a>
           </Cabecalho>
         
           <Titulo>SPACE JAMSHIPS</Titulo>
         
-<<<<<<< HEAD
          
           <Filtro>
             
@@ -163,19 +120,6 @@ export class App extends React.Component {
       
           <Corpo>
             {produtos.map((item)=>{
-=======
-          <Buscador type="text" value={busca} onChange={(ev)=>setBusca(ev.target.value)} placeholder="Busca..."/><br/>
-
-          <Filtro
-            minPreco={this.state.minPreco}
-            filtroMinPreco={this.filtroMinPreco}
-            maxPreco={this.state.filtroMaxPreco}
-            filtroMaxPreco={this.filtroMaxPreco}
-          />
-      
-          <Corpo>
-            {prod.map((item)=>{
->>>>>>> 30ed453bfc003400a719fb001f7678078dc67161
               return <Home key={item.id} imagem={item.img} nome={item.nome}   valor={item.valor} />
             })}
           </Corpo>
