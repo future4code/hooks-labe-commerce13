@@ -11,8 +11,7 @@ import nave6 from "./components/imagens/nave6.png";
 import nave7 from "./components/imagens/nave7.jpg";
 import nave8 from "./components/imagens/nave8.jpg";
 import nave9 from "./components/imagens/nave9.jpeg";
-
-
+//entrega - commit
 
 
 const Buscador = styled.div`
